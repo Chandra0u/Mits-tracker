@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: chandra-attendance-tracker
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    healthCheckPath: /_stcore/health
