@@ -284,7 +284,16 @@ def scrape_attendance(roll, password):
             script_path = file.name
 
         env = os.environ.copy()
-        env["PLAYWRIGHT_BROWSERS_PATH"] = os.getenv("PLAYWRIGHT_BROWSERS_PATH", "/ms-playwright")
+        browser = await p.chromium.launch(
+    headless=True,
+    executable_path="/usr/bin/chromium",
+    args=[
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-gpu"
+    ]
+)
 
         proc = subprocess.run(
             [sys.executable, script_path],
